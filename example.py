@@ -27,11 +27,13 @@ mb_melgan = TFAutoModel.from_pretrained("tensorspeech/tts-mb_melgan-ljspeech-en"
 # inference
 processor = AutoProcessor.from_pretrained("tensorspeech/tts-fastspeech2-ljspeech-en")
 
-mypath = "../tbeckenhauer.github.io/"
+mypath = "../Blog_TbeckenhauerGithubIo/"
 onlyfiles = list(Path(mypath).rglob("*.markdown"))
 
 for f in onlyfiles:
     f = str(f)
+    if "_drafts" in f:
+        continue
     if "_postsBacklog" in f:
         continue
     if "vendor" in f:
@@ -41,6 +43,16 @@ for f in onlyfiles:
 
     file1 = open(f,"r")
     fileTextArr = file1.readlines()
+    print(fileTextArr)
+    print('blah')
+    get_indexes = lambda x, xs: [i for (y, i) in zip(xs, range(len(xs))) if x == y]
+    print(get_indexes("---\n", fileTextArr));
+    frontMatterIndexes = get_indexes("---\n", fileTextArr);
+    print('fileTextArr')
+    print(fileTextArr)
+    print('frontMatterIndexes')
+    print(frontMatterIndexes)
+    fileTextArr = fileTextArr[frontMatterIndexes[1]:]
     fileTextArr = (" ".join(line.strip() for line in fileTextArr))
     fileTextArr = fileTextArr.split('.')
     audio_before = None

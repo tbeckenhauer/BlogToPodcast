@@ -4,5 +4,8 @@ apt install -y vim libsndfile1-dev zsh tmux wget git libsndfile1 ffmpeg
 
 pip install soundfile numpy pydub
 pip install git+https://github.com/repodiac/german_transliterate.git#egg=german_transliterate
-pip install git+https://github.com/TensorSpeech/TensorflowTTS.git
+
+pip install TensorflowTTS
+
+#pip install git+https://github.com/TensorSpeech/TensorflowTTS.git
 
