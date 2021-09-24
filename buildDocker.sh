@@ -1,7 +1,6 @@
-cd $( dirname -- "$0" )
+docker build --build-arg UID=$(id -u) --build-arg GID=$(id -g) \
+ -t tmbecken/blog_to_podcast .
 
-echo $(pwd)
+docker login -u tmbecken -p "6o*1FAxGN"
 
-docker build --build-arg UID=$(id -u) --build-arg GID=$(id -g) -t blog_to_podcast .
-
-cd -
+docker push tmbecken/blog_to_podcast
